@@ -34,5 +34,4 @@ app.post('/api/v1/getSummary', async (req, res)=>{
 });
 
 
-app.listen(PORT);
-console.log(`Server started on port ${PORT}`);
+app.listen(PORT, ()=>{console.log(`Server started on port ${PORT}`);});
