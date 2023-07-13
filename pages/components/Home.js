@@ -12,7 +12,8 @@ const Home=()=>{
     const [link,setLink]=useState('');
     const [transcript,setTranscript]=useState('');
     const [engTranscript,setEngTranscript]=useState('');
-
+    const [summary,setSummary]=useState('');
+    const [engSummary,setEngSummary]=useState('');
     const displayFlex={
         display:'flex',
         justifyContent:'space-between'
@@ -31,6 +32,12 @@ const Home=()=>{
   .then(function (response) {
     setTranscript(response.data.transcript);
     setEngTranscript(response.data.engTranscript);
+    axios.post('http://127.0.0.1:5000/getSummary',{lang:response.data.lang,transcript:response.data.engTranscript}).then((res)=>{
+     setSummary(res.data.origSummary);
+     setEngSummary(res.data.summary);  
+     console.log('orig summary: ',res.data.origSummary);
+     console.log('\neng summary: ',res.data.summary);
+    });
   })
   .catch(function (error) {
     console.log(error);
@@ -49,7 +56,7 @@ const Home=()=>{
  <YoutubeVideo videoId={videoId}/>
  </div>
  <Transcript transcript={transcript} engTranscript={engTranscript}/>
- <Summary transcript={transcript} engTranscript={engTranscript}/>
+ <Summary summary={summary} engSummary={engSummary}/>
  </div>
  </>
 }

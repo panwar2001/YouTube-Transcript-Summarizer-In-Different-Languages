@@ -2,37 +2,20 @@ import Copy from "./Copy";
 import Image from "next/image";
 import dynamic from 'next/dynamic';
 import { useState } from "react";
-import axios from "axios";
 const DownloadTextFile = dynamic(() => import('./DownloadTextFile'), {
   ssr: false,
 });
-const Transcript=({transcript,engTranscript})=>{
+const Transcript=({summary,engSummary})=>{
   const [displayTranscript,setDisplayTranscript]=useState(true);
-  const [summary,setSummary]=useState('');
-  const [engSummary,setEngSummary]=useState('');
-  const getTranscriptSummary=()=>{
-    axios.post('http://localhost:8080/api/v1/getSummary',{text:transcript})
-    .then(function (response) {
-       setSummary(response.data.summary)
-    })
-    setDisplayTranscript(true)
-  }
-  const getEngTranscriptSummary=()=>{
-    axios.post('http://localhost:8080/api/v1/getSummary',{text:engTranscript})
-    .then(function (response) {
-      setEngSummary(response.data.summary)
-    })
-    setDisplayTranscript(false)
-  }
  return (<div className="Box" title="Transcript of the youtube video">
-   <h2 >Transcript</h2>
+   <h2 >Transcript Summary</h2>
    <nav>
     <div>
-      <button className="navButton" onClick={()=>getTranscriptSummary()}>Orignal transcript</button>
+      <button className="navButton" onClick={()=>setDisplayTranscript(displayTranscript^true)}>Orignal transcript</button>
       </div>
       <Image src="/youtube.svg" height={50} width={50} alt="youtube svg"/>
       <div>
-      <button className="navButton" onClick={()=>getEngTranscriptSummary()}>English transcript</button>
+      <button className="navButton" onClick={()=>setDisplayTranscript(displayTranscript^true)}>English transcript</button>
       </div>
    </nav>
   <div className="co">

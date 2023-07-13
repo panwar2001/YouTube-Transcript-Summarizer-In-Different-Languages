@@ -40,5 +40,8 @@ curl -X POST http://localhost:8080/api/v1/getTranscript -H 'Content-Type: applic
 ## Youtube Videos links data
 ## Hindi 
 ```ruby
-https://www.youtube.com/watch?v=hr7XNl6UqLw
+Hindi-https://www.youtube.com/watch?v=hr7XNl6UqLw
+English-https://www.youtube.com/watch?v=1j0X9QMF--M
+Japanese-https://www.youtube.com/watch?v=_p1hJg0D5QE
+French- https://www.youtube.com/watch?v=NiKtZgImdlY
 ```
