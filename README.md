@@ -8,20 +8,23 @@ This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next
 First, run the development server:
 
 ```bash
+npm install
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
+```
+Node.js backend 
+```bash
+npm install
+npm start
+```
+Summarizer backend
+```bash
+pip install googletrans==4.0.0-rc1 
+pip install flask flask_cors googletrans spacy           
+python3 -m spacy download en_core_web_sm
+python3 transcriptSummaryAPI.py
 ```
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
-
-## Curl Command to test /api/v1/getTrascript api
-```
-curl -X POST http://localhost:8080/api/v1/getTranscript -H 'Content-Type: application/json' -d '{"id":"hr7XNl6UqLw"}'
-
-```
 
 ## Data in which language youtube videos approximately are
 |S.No|Language|% approx usage|
@@ -37,12 +40,16 @@ curl -X POST http://localhost:8080/api/v1/getTranscript -H 'Content-Type: applic
 |9	|Hindi|	2%|
 |10	|Italian|	2%| 
 
-## Youtube Videos links data
-## Hindi 
+## Youtube Videos links 
 ```ruby
 Hindi-https://www.youtube.com/watch?v=hr7XNl6UqLw
 English-https://www.youtube.com/watch?v=1j0X9QMF--M
 Japanese-https://www.youtube.com/watch?v=_p1hJg0D5QE
 French- https://www.youtube.com/watch?v=NiKtZgImdlY
 Spanish - https://www.youtube.com/watch?v=xbX3NOiRX_w
+```
+
+## Problem Solved
+```bash
+The problem is there are many methods to summarize text in english. It is difficult to find summarizer in any language of the world. So i thought of a solution by converting given language transcript  to english transcript then summarize it, finally converting transcript in the given language.
 ```
