@@ -44,4 +44,5 @@ Hindi-https://www.youtube.com/watch?v=hr7XNl6UqLw
 English-https://www.youtube.com/watch?v=1j0X9QMF--M
 Japanese-https://www.youtube.com/watch?v=_p1hJg0D5QE
 French- https://www.youtube.com/watch?v=NiKtZgImdlY
+Spanish - https://www.youtube.com/watch?v=xbX3NOiRX_w
 ```

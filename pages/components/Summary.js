@@ -1,10 +1,7 @@
 import Copy from "./Copy";
 import Image from "next/image";
-import dynamic from 'next/dynamic';
 import { useState } from "react";
-const DownloadTextFile = dynamic(() => import('./DownloadTextFile'), {
-  ssr: false,
-});
+import DownloadTextFile from './DownloadTextFile';
 const Transcript=({summary,engSummary})=>{
   const [displayTranscript,setDisplayTranscript]=useState(true);
  return (<div className="Box" title="Transcript of the youtube video">
@@ -24,7 +21,8 @@ const Transcript=({summary,engSummary})=>{
      </div>
   </div>
   <nav>
-   <DownloadTextFile text={displayTranscript?summary:engSummary}/>   
+   <DownloadTextFile text={displayTranscript?summary:engSummary}/> 
+   <h2>{displayTranscript?summary.length:engSummary.length} characters</h2>  
    <Copy text={displayTranscript?summary:engSummary}/>
    </nav>
   <style jsx>{`

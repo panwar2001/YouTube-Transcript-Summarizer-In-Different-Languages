@@ -16,7 +16,6 @@ const getTranscript=async (id)=>{
 }
 
 app.post('/api/v1/getTranscript', (req, res)=>{
-    console.log(req.body)
     getTranscript(req.body.id).then(async (transcript)=>{
         const {text,raw} = await translate(transcript, { to: 'en',detect:true });
         res.json({lang:raw.src,transcript:transcript,engTranscript:text});

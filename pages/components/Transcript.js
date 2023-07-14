@@ -22,6 +22,7 @@ const Transcript=({transcript,engTranscript})=>{
   </div>
   <nav>
    <DownloadTextFile text={displayTranscript?transcript:engTranscript}/>   
+   <h2>{displayTranscript?transcript.length:engTranscript.length} characters</h2>
    <Copy text={displayTranscript?transcript:engTranscript}/>
    </nav>
   <style jsx>{`

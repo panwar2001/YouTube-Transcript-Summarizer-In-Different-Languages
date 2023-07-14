@@ -1,8 +1,11 @@
-import copy from 'copy-to-clipboard';
+'use client'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCopy } from '@fortawesome/free-solid-svg-icons';
 const Copy = ({text}) => {
-    return <>
+const copy=(TEXT)=>{
+    navigator.clipboard.writeText(TEXT);
+}
+return <>
     <button onClick={()=>copy(text)}>
     <FontAwesomeIcon icon={faCopy} fade/>
     </button>
