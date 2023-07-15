@@ -1,8 +1,11 @@
+#summary using nlp for extracting parts of speech , words and sentences.
+from heapq import nlargest
 import spacy #spacy is a open source library build for nlp in python.
 from spacy.lang.en.stop_words import STOP_WORDS
 from string import punctuation
-from heapq import nlargest
 def summarize(text, percentage): 
+    # en_core_web_sm is a small English pipeline trained on written web text (blogs,
+    # news, comments), that includes vocabulary, syntax and entities.
     nlp = spacy.load('en_core_web_sm')      # load the model into spaCy
     doc= nlp(text)       # pass the text into the nlp function
     # Doc object contains a list of tokens, where each token is a word or punctuation mark
@@ -44,6 +47,6 @@ def summarize(text, percentage):
     # this will create an array of sentences based on their score.
     final_summary=[word.text for word in summary]          
     #join the sentences with space
-    summary=" ".join(final_summary)     #convert to a string
+    summary=" ".join(final_summary)   
     return summary
 

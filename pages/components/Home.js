@@ -7,6 +7,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons";
 import Image from "next/image";
 import axios from "axios";
+import Loader from './Loader';
 const Home=()=>{
     const [videoId,setVideoId]=useState('');
     const [link,setLink]=useState('');
@@ -14,6 +15,7 @@ const Home=()=>{
     const [engTranscript,setEngTranscript]=useState('');
     const [summary,setSummary]=useState('');
     const [engSummary,setEngSummary]=useState('');
+    const [isLoading,setLoading]=useState(false);
     const displayFlex={
         display:'flex',
         justifyContent:'space-between'
@@ -27,16 +29,16 @@ const Home=()=>{
       border:'1px solid black'
     }
     const handleClick= ()=>{
+    setLoading(true);
     setVideoId(YouTubeIdExtractor(link));
     axios.post('http://localhost:8080/api/v1/getTranscript',{id:link})
-  .then(function (response) {
+   .then(function (response) {
     setTranscript(response.data.transcript);
     setEngTranscript(response.data.engTranscript);
     axios.post('http://127.0.0.1:5000/getSummary',{lang:response.data.lang,transcript:response.data.engTranscript}).then((res)=>{
      setSummary(res.data.origSummary);
      setEngSummary(res.data.summary);  
-     console.log('orig summary: ',res.data.origSummary);
-     console.log('\neng summary: ',res.data.summary);
+     setLoading(false);
     });
   })
   .catch(function (error) {
@@ -53,6 +55,7 @@ const Home=()=>{
  <FontAwesomeIcon icon={faMagnifyingGlass} className="fa-3x"/>
  </button>
  </div>
+ {isLoading&&<Loader/>}
  <YoutubeVideo videoId={videoId}/>
  </div>
  <Transcript transcript={transcript} engTranscript={engTranscript}/>

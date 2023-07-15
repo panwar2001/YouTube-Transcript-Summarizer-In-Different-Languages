@@ -1,8 +1,10 @@
+#Flask is a micro web framework written in Python.
 from flask import Flask,request,jsonify #request is global server object
 import transcriptSummarizer
 from googletrans import Translator
 translator = Translator()
-from flask_cors import CORS # flask extension for handling cross origin resource sharing(CORS), making cross origin possible.
+# flask extension for handling cross origin resource sharing(CORS), making cross origin possible
+from flask_cors import CORS
 app=Flask(__name__)
 cors = CORS(app, resources={r"/*": {"origins": "*"}})
 app.config['CORS_HEADERS'] = 'Content-Type' #configuring cors headers to content type
